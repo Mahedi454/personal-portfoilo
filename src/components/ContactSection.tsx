@@ -1,15 +1,62 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Send, Linkedin, Github, Instagram } from "lucide-react";
 
+const CONTACT = {
+  email: "mahedihasan.codes@gmail.com",
+  whatsappDisplay: "+880 1768-857058",
+  // WhatsApp "click to chat" format: remove + and punctuation
+  whatsappLink: "https://wa.me/8801768857058",
+  linkedin: "https://www.linkedin.com/in/mahedihasan916/",
+  github: "https://github.com/Mahedi454",
+  instagram: "https://www.instagram.com/mahashi916/",
+} as const;
+
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: integrate with backend
-    alert("Thanks for your message! I'll get back to you soon.");
-    setForm({ name: "", email: "", message: "" });
+    if (isSending) return;
+
+    setIsSending(true);
+
+    const now = new Date();
+    const formattedTime = now.toLocaleString("en-BD", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    emailjs
+      .send(
+        "service_chfcxq7",
+        "template_93lr19h",
+        {
+          // Match EmailJS template variables: {{name}}, {{time}}, {{message}}
+          name: form.name,
+          time: formattedTime,
+          message: form.message,
+          email: form.email,
+          // Optional: allows you to reply directly from your email client
+          reply_to: form.email,
+        },
+        "2F4-NGbtyH4KyqgXU",
+      )
+      .then(
+        () => {
+          alert("Thanks for your message! I'll get back to you soon.");
+          setForm({ name: "", email: "", message: "" });
+        },
+        () => {
+          alert("Sorry, something went wrong while sending your message. Please try again.");
+        },
+      )
+      .finally(() => setIsSending(false));
   };
 
   return (
@@ -71,10 +118,11 @@ const ContactSection = () => {
           </div>
           <button
             type="submit"
-            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all hover:scale-105 glow-primary"
+            disabled={isSending}
+            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all hover:scale-105 glow-primary disabled:opacity-60 disabled:hover:scale-100"
           >
             <Send size={16} />
-            Send Message
+            {isSending ? "Sending..." : "Send Message"}
           </button>
         </motion.form>
 
@@ -92,7 +140,12 @@ const ContactSection = () => {
             </div>
             <div>
               <p className="text-sm font-medium">Email</p>
-              <p className="text-xs text-muted-foreground">mahedi@example.com</p>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                {CONTACT.email}
+              </a>
             </div>
           </div>
 
@@ -102,20 +155,30 @@ const ContactSection = () => {
             </div>
             <div>
               <p className="text-sm font-medium">WhatsApp</p>
-              <p className="text-xs text-muted-foreground">+880 1XXX-XXXXXX</p>
+              <a
+                href={CONTACT.whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                {CONTACT.whatsappDisplay}
+              </a>
             </div>
           </div>
 
           {/* Social */}
           <div className="flex gap-3 mt-2">
             {[
-              { icon: Linkedin, href: "#" },
-              { icon: Github, href: "#" },
-              { icon: Instagram, href: "#" },
-            ].map(({ icon: Icon, href }, i) => (
+              { icon: Linkedin, href: CONTACT.linkedin, label: "LinkedIn" },
+              { icon: Github, href: CONTACT.github, label: "GitHub" },
+              { icon: Instagram, href: CONTACT.instagram, label: "Instagram" },
+            ].map(({ icon: Icon, href, label }, i) => (
               <a
                 key={i}
                 href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
                 className="w-10 h-10 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
               >
                 <Icon size={18} />
