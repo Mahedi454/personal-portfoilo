@@ -1,44 +1,53 @@
 import { motion } from "framer-motion";
-import { Code2, Palette, Smartphone, Globe } from "lucide-react";
+import { ArrowUpRight, Code2, Globe, Palette, Smartphone } from "lucide-react";
 
 const highlights = [
   { icon: Code2, label: "Web Development", desc: "React, Next.js, TypeScript" },
-  { icon: Palette, label: "UI/UX Design", desc: "Figma, Creative Solutions" },
-  { icon: Smartphone, label: "Mobile Apps", desc: "Flutter, Cross-platform" },
-  { icon: Globe, label: "WordPress", desc: "Custom themes & plugins" },
+  { icon: Palette, label: "UI/UX Design", desc: "Figma, conversion-focused interfaces" },
+  { icon: Smartphone, label: "Mobile Apps", desc: "Flutter and cross-platform delivery" },
+  { icon: Globe, label: "WordPress", desc: "Custom themes, CMS builds, and support" },
 ];
 
 const AboutSection = () => {
   return (
-    <section id="about" className="section-padding max-w-7xl mx-auto">
+    <section id="about" className="section-padding">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="grid md:grid-cols-2 gap-16 items-center"
+        className="section-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
       >
-        {/* Text */}
-        <div>
-          <p className="text-sm font-mono text-primary tracking-widest uppercase mb-3">About Me</p>
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">
-            Turning ideas into <span className="text-gradient">digital reality</span>
+        <div className="max-w-2xl">
+          <div className="eyebrow">About Me</div>
+          <h2 className="section-title">
+            I turn product ideas into <span className="text-gradient">credible, modern experiences</span>.
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            I'm a passionate full-stack developer and designer based in Bangladesh,
-            specializing in building exceptional digital experiences. With expertise
-            spanning web development, mobile apps, and WordPress solutions, I bring
-            a unique blend of technical skill and creative vision to every project.
+          <p className="section-copy">
+            I&apos;m a Bangladesh-based developer and designer focused on building websites
+            and apps that feel premium from the first interaction. My work blends sharp
+            front-end execution, solid engineering, and clear visual hierarchy.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Whether it's crafting pixel-perfect interfaces or architecting scalable
-            backends, I'm committed to delivering solutions that not only look
-            stunning but perform flawlessly.
-          </p>
+          <div className="pro-card mt-8 rounded-[2rem] p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                  Approach
+                </p>
+                <h3 className="mt-3 text-2xl font-bold">
+                  Design systems, performance, and product thinking in one workflow.
+                </h3>
+              </div>
+              <ArrowUpRight className="mt-1 text-primary" />
+            </div>
+            <p className="mt-4 text-base leading-7 text-muted-foreground">
+              From landing pages to dashboards, I focus on clarity, motion, and
+              maintainable code so the final result feels professional instead of generic.
+            </p>
+          </div>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 self-center justify-self-center sm:grid-cols-2">
           {highlights.map((item, i) => (
             <motion.div
               key={item.label}
@@ -47,13 +56,13 @@ const AboutSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
               whileHover={{ y: -6 }}
-              className="glass-card rounded-xl p-5 group cursor-default"
+              className="pro-card group flex min-h-[190px] flex-col rounded-[1.75rem] p-6 cursor-default"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                <item.icon className="w-5 h-5 text-primary" />
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/16">
+                <item.icon className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="font-semibold text-sm mb-1">{item.label}</h3>
-              <p className="text-xs text-muted-foreground">{item.desc}</p>
+              <h3 className="text-base font-bold">{item.label}</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}
         </div>

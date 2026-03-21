@@ -1,58 +1,76 @@
-import { useRef, useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Stars } from "@react-three/drei";
+import { Environment, Float, MeshTransmissionMaterial, OrbitControls } from "@react-three/drei";
+import { useTheme } from "next-themes";
 import * as THREE from "three";
 
-const FloatingGeometry = ({ position, color, speed = 1, distort = 0.3, size = 1 }: {
+const FloatingGeometry = ({
+  position,
+  color,
+  speed = 1,
+  size = 1,
+  wireColor,
+}: {
   position: [number, number, number];
   color: string;
   speed?: number;
-  distort?: number;
   size?: number;
+  wireColor: string;
 }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2 * speed;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.15 * speed;
+    if (groupRef.current) {
+      groupRef.current.rotation.x = state.clock.elapsedTime * 0.12 * speed;
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.16 * speed;
     }
   });
 
   return (
-    <Float speed={speed * 2} rotationIntensity={0.5} floatIntensity={1}>
-      <mesh ref={meshRef} position={position} scale={size}>
-        <icosahedronGeometry args={[1, 1]} />
-        <MeshDistortMaterial
-          color={color}
-          distort={distort}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </mesh>
+    <Float speed={speed * 1.6} rotationIntensity={0.25} floatIntensity={0.7}>
+      <group ref={groupRef} position={position} scale={size}>
+        <mesh>
+          <octahedronGeometry args={[1.1, 0]} />
+          <MeshTransmissionMaterial
+            backside
+            color={color}
+            thickness={0.8}
+            roughness={0.1}
+            chromaticAberration={0.05}
+            anisotropy={0.2}
+            distortion={0.12}
+            distortionScale={0.24}
+            temporalDistortion={0.12}
+            transmission={0.92}
+          />
+        </mesh>
+        <lineSegments>
+          <edgesGeometry args={[new THREE.OctahedronGeometry(1.18, 0)]} />
+          <lineBasicMaterial color={wireColor} transparent opacity={0.45} />
+        </lineSegments>
+      </group>
     </Float>
   );
 };
 
 const ParticleField = () => {
   const points = useRef<THREE.Points>(null);
-  const particleCount = 200;
+  const particleCount = 320;
 
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 20;
+      pos[i * 3] = (Math.random() - 0.5) * 16;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
     }
     return pos;
   }, []);
 
   useFrame((state) => {
     if (points.current) {
-      points.current.rotation.y = state.clock.elapsedTime * 0.02;
-      points.current.rotation.x = state.clock.elapsedTime * 0.01;
+      points.current.rotation.y = state.clock.elapsedTime * 0.015;
+      points.current.position.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.15;
     }
   });
 
@@ -66,29 +84,62 @@ const ParticleField = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.03} color="#4dd0e1" transparent opacity={0.6} sizeAttenuation />
+      <pointsMaterial size={0.035} color="#7dd3fc" transparent opacity={0.75} sizeAttenuation />
     </points>
   );
 };
 
+const LightRig = ({ isLight }: { isLight: boolean }) => (
+  <>
+    <color attach="background" args={[isLight ? "#f7f4ee" : "#07111f"]} />
+    <fog attach="fog" args={[isLight ? "#f7f4ee" : "#07111f", 8, 18]} />
+    <ambientLight intensity={isLight ? 1.15 : 0.55} />
+    <hemisphereLight
+      skyColor={isLight ? "#ffffff" : "#60a5fa"}
+      groundColor={isLight ? "#cbd5e1" : "#020617"}
+      intensity={isLight ? 1.4 : 0.9}
+    />
+    <directionalLight position={[4, 6, 5]} intensity={isLight ? 1.6 : 1.1} color={isLight ? "#ffffff" : "#67e8f9"} />
+    <pointLight position={[-5, -2, 4]} intensity={isLight ? 1.1 : 0.8} color={isLight ? "#f97316" : "#fb923c"} />
+  </>
+);
+
 const Scene3D = () => {
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
+
   return (
     <Canvas
-      camera={{ position: [0, 0, 6], fov: 60 }}
-      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+      camera={{ position: [0, 0.4, 7], fov: 42 }}
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
       gl={{ alpha: true, antialias: true }}
+      dpr={[1, 1.5]}
     >
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} color="#4dd0e1" />
-      <pointLight position={[-5, -5, -5]} intensity={0.4} color="#7c4dff" />
-
-      <FloatingGeometry position={[-3, 1.5, -2]} color="#4dd0e1" speed={0.8} distort={0.4} size={0.8} />
-      <FloatingGeometry position={[3.5, -1, -3]} color="#7c4dff" speed={0.6} distort={0.5} size={1.2} />
-      <FloatingGeometry position={[1, 2.5, -4]} color="#4dd0e1" speed={1} distort={0.3} size={0.5} />
-      <FloatingGeometry position={[-2, -2, -1]} color="#7c4dff" speed={0.4} distort={0.6} size={0.6} />
-
+      <LightRig isLight={isLight} />
+      <Environment preset={isLight ? "city" : "night"} />
+      <FloatingGeometry
+        position={[-2.8, 1.4, -0.8]}
+        color={isLight ? "#dbeafe" : "#67e8f9"}
+        wireColor={isLight ? "#2563eb" : "#93c5fd"}
+        speed={0.8}
+        size={1.35}
+      />
+      <FloatingGeometry
+        position={[2.5, -0.8, -1.6]}
+        color={isLight ? "#ffedd5" : "#fdba74"}
+        wireColor={isLight ? "#ea580c" : "#fb923c"}
+        speed={0.65}
+        size={0.95}
+      />
+      <FloatingGeometry
+        position={[0.2, 2, -2.8]}
+        color={isLight ? "#ffffff" : "#dbeafe"}
+        wireColor={isLight ? "#64748b" : "#38bdf8"}
+        speed={0.55}
+        size={0.62}
+      />
       <ParticleField />
-      <Stars radius={50} depth={50} count={1000} factor={3} saturation={0} fade speed={1} />
+      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={isLight ? 0.45 : 0.35} />
     </Canvas>
   );
 };

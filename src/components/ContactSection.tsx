@@ -1,12 +1,11 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import { Mail, MessageCircle, Send, Linkedin, Github, Instagram } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail, MessageCircle, Send } from "lucide-react";
 
 const CONTACT = {
   email: "mahedihasan.codes@gmail.com",
   whatsappDisplay: "+880 1768-857058",
-  // WhatsApp "click to chat" format: remove + and punctuation
   whatsappLink: "https://wa.me/8801768857058",
   linkedin: "https://www.linkedin.com/in/mahedihasan916/",
   github: "https://github.com/Mahedi454",
@@ -37,12 +36,10 @@ const ContactSection = () => {
         "service_chfcxq7",
         "template_93lr19h",
         {
-          // Match EmailJS template variables: {{name}}, {{time}}, {{message}}
           name: form.name,
           time: formattedTime,
           message: form.message,
           email: form.email,
-          // Optional: allows you to reply directly from your email client
           reply_to: form.email,
         },
         "2F4-NGbtyH4KyqgXU",
@@ -60,73 +57,70 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding max-w-7xl mx-auto">
+    <section id="contact" className="section-padding">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
+        className="section-shell"
       >
-        <p className="text-sm font-mono text-primary tracking-widest uppercase mb-3">Get In Touch</p>
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-12">
-          Let's <span className="text-gradient">Connect</span>
-        </h2>
+        <div className="section-header">
+          <p className="eyebrow">Contact</p>
+          <h2 className="section-title">
+            Ready to launch something that feels <span className="text-gradient">more polished and professional</span>?
+          </h2>
+        </div>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-12">
-        {/* Form */}
+      <div className="section-shell grid gap-12 md:grid-cols-[1.1fr_0.9fr]">
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="space-y-5"
+          className="pro-card space-y-5 rounded-[2rem] p-7"
         >
           <div>
-            <label className="text-sm font-medium mb-1.5 block">Name</label>
+            <label className="mb-1.5 block text-sm font-medium">Name</label>
             <input
               type="text"
               required
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground text-sm focus:outline-none focus:border-primary transition-colors"
+              className="w-full rounded-2xl border border-border bg-secondary/70 px-4 py-3 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
               placeholder="Your name"
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1.5 block">Email</label>
+            <label className="mb-1.5 block text-sm font-medium">Email</label>
             <input
               type="email"
               required
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground text-sm focus:outline-none focus:border-primary transition-colors"
+              className="w-full rounded-2xl border border-border bg-secondary/70 px-4 py-3 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1.5 block">Message</label>
+            <label className="mb-1.5 block text-sm font-medium">Message</label>
             <textarea
               required
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground text-sm focus:outline-none focus:border-primary transition-colors resize-none"
+              className="w-full resize-none rounded-2xl border border-border bg-secondary/70 px-4 py-3 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
               placeholder="Tell me about your project..."
             />
           </div>
-          <button
-            type="submit"
-            disabled={isSending}
-            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all hover:scale-105 glow-primary disabled:opacity-60 disabled:hover:scale-100"
-          >
+          <button type="submit" disabled={isSending} className="button-primary disabled:pointer-events-none disabled:opacity-60">
             <Send size={16} />
             {isSending ? "Sending..." : "Send Message"}
           </button>
         </motion.form>
 
-        {/* Info */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -134,52 +128,51 @@ const ContactSection = () => {
           transition={{ duration: 0.5 }}
           className="flex flex-col justify-center gap-6"
         >
-          <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Mail className="w-5 h-5 text-primary" />
+          <div className="pro-card rounded-[1.75rem] p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Direct Contact</p>
+            <p className="mt-3 max-w-md text-base leading-7 text-muted-foreground">
+              If you need a portfolio, landing page, dashboard, or full product UI that
+              looks trustworthy and modern, we can map the scope quickly.
+            </p>
+          </div>
+
+          <div className="pro-card flex items-center gap-4 rounded-[1.75rem] p-5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+              <Mail className="h-5 w-5 text-primary" />
             </div>
             <div>
               <p className="text-sm font-medium">Email</p>
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href={`mailto:${CONTACT.email}`} className="text-xs text-muted-foreground transition-colors hover:text-primary">
                 {CONTACT.email}
               </a>
             </div>
           </div>
 
-          <div className="glass-card rounded-xl p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <MessageCircle className="w-5 h-5 text-primary" />
+          <div className="pro-card flex items-center gap-4 rounded-[1.75rem] p-5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+              <MessageCircle className="h-5 w-5 text-primary" />
             </div>
             <div>
               <p className="text-sm font-medium">WhatsApp</p>
-              <a
-                href={CONTACT.whatsappLink}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href={CONTACT.whatsappLink} target="_blank" rel="noreferrer" className="text-xs text-muted-foreground transition-colors hover:text-primary">
                 {CONTACT.whatsappDisplay}
               </a>
             </div>
           </div>
 
-          {/* Social */}
-          <div className="flex gap-3 mt-2">
+          <div className="mt-2 flex gap-3">
             {[
               { icon: Linkedin, href: CONTACT.linkedin, label: "LinkedIn" },
               { icon: Github, href: CONTACT.github, label: "GitHub" },
               { icon: Instagram, href: CONTACT.instagram, label: "Instagram" },
-            ].map(({ icon: Icon, href, label }, i) => (
+            ].map(({ icon: Icon, href, label }) => (
               <a
-                key={i}
+                key={label}
                 href={href}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="w-10 h-10 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-background/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 <Icon size={18} />
               </a>

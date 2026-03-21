@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const navLinks = [
@@ -15,9 +15,9 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
-  const isDark = theme === "dark" || theme === undefined;
+  const isDark = resolvedTheme !== "light";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -30,26 +30,30 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-card shadow-lg" : ""
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "border-b border-border/60 bg-background/75 backdrop-blur-xl" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#home" className="text-xl font-bold font-display text-gradient">
-          MHS
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <a href="#home" className="flex items-center gap-3">
+          <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-background/70 shadow-[0_10px_30px_hsl(var(--primary)/0.14)]">
+            <img
+              src="/Portfolio%20Logo.jpeg"
+              alt="Mahedi Hasan logo"
+              className="h-full w-full object-cover"
+            />
+          </span>
+          <span className="hidden font-display text-base font-bold text-foreground sm:block">
+            Mahedi Hasan
+          </span>
         </a>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                isDark
-                  ? "text-muted-foreground hover:text-primary"
-                  : "text-primary hover:text-muted-foreground"
-              }`}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
@@ -58,47 +62,47 @@ const Navbar = () => {
             type="button"
             onClick={() => setTheme(isDark ? "light" : "dark")}
             aria-label="Toggle color theme"
-            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/70 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a
-            href="#contact"
-            className="px-4 py-2 rounded-lg bg-accent text-accent-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            Hire Me
+          <a href="#contact" className="button-primary">
+            Start a Project
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
+        <button className="text-foreground md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card border-t border-border"
+            className="pro-card mx-4 rounded-3xl border md:hidden"
           >
-            <div className="flex flex-col px-6 py-4 gap-4">
+            <div className="flex flex-col gap-4 px-6 py-5">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                 >
                   {link.label}
                 </a>
               ))}
+              <button
+                type="button"
+                onClick={() => setTheme(isDark ? "light" : "dark")}
+                className="button-secondary mt-2 w-full"
+              >
+                {isDark ? <Sun size={16} /> : <Moon size={16} />}
+                Switch Theme
+              </button>
             </div>
           </motion.div>
         )}

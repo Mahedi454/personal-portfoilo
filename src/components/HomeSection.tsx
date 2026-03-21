@@ -1,74 +1,90 @@
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
+import { ArrowRight, Download, Sparkles } from "lucide-react";
 import Scene3D from "./Scene3D";
 
 const HomeSection = () => {
-  const { theme } = useTheme();
-  const isLight = theme === "light";
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {isLight ? <div className="hero-light-bg" /> : <Scene3D />}
-
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background pointer-events-none" />
-
-      <div className="relative z-10 text-center px-6 max-w-4xl flex flex-col items-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-sm font-mono font-semibold text-primary tracking-[0.25em] uppercase mb-4"
-        >
-          Developer & Designer
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold font-display leading-tight mb-6"
-        >
-          Hi, I'm{" "}
-          <span className="text-gradient">Md. Mahedi Hasan Shihab</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className={`text-lg md:text-xl max-w-2xl mx-auto mb-10 ${
-            isLight ? "text-foreground/90" : "text-muted-foreground"
-          }`}
-        >
-          Crafting immersive digital experiences through clean code,
-          creative design, and cutting-edge technology.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#contact"
-            className="px-8 py-3.5 rounded-lg bg-accent text-accent-foreground font-semibold text-base hover:opacity-90 transition-all hover:scale-105 glow-accent"
-          >
-            Hire Me
-          </a>
-          <a
-            href="#projects"
-            className={`px-8 py-3.5 rounded-lg font-semibold text-base transition-all hover:scale-105 border ${
-              isLight
-                ? "border-primary/40 text-foreground hover:border-primary hover:text-primary"
-                : "border-border text-foreground hover:border-primary hover:text-primary"
-            }`}
-          >
-            View Projects
-          </a>
-        </motion.div>
+    <section id="home" className="relative overflow-hidden px-6 pt-28 pb-16 sm:px-8 lg:px-12">
+      <div className="absolute inset-0">
+        <Scene3D />
       </div>
+      <div className="absolute inset-0 bg-background/34" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsl(var(--background)/0.08),transparent_30%),radial-gradient(circle_at_80%_20%,hsl(var(--primary)/0.10),transparent_24%),linear-gradient(180deg,hsl(var(--background)/0.18)_0%,hsl(var(--background)/0.50)_56%,hsl(var(--background)/0.82)_100%)]" />
+      <div className="hero-orb left-[-12rem] top-20 h-72 w-72 bg-[var(--hero-orb-a)]" />
+      <div className="hero-orb bottom-8 right-[-10rem] h-80 w-80 bg-[var(--hero-orb-b)]" />
+      <div className="mesh-bg absolute inset-0 opacity-30" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      <div className="section-shell relative min-h-[calc(100vh-7rem)] items-center py-10">
+        <div className="relative z-10 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="eyebrow"
+          >
+            <Sparkles size={14} />
+            Full-Stack Developer and UI Designer
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.7 }}
+            className="max-w-4xl text-5xl font-bold leading-[1.02] sm:text-6xl lg:text-7xl"
+          >
+            Building premium digital products with a clean visual edge.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl"
+          >
+            I design and develop high-performing websites, apps, and product interfaces
+            that help brands look credible, feel modern, and convert with confidence.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.6 }}
+            className="mt-10 flex flex-col gap-4 sm:flex-row"
+          >
+            <a href="#contact" className="button-primary">
+              Let&apos;s Work Together
+              <ArrowRight size={16} />
+            </a>
+            <a href="#projects" className="button-secondary">
+              View Case Studies
+            </a>
+            <a href="#contact" className="button-secondary">
+              <Download size={16} />
+              Request Resume
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="mt-12 grid gap-4 sm:grid-cols-3"
+          >
+            {[
+              { value: "4+", label: "Years building products" },
+              { value: "20+", label: "Projects delivered" },
+              { value: "100%", label: "Responsive and polished UI" },
+            ].map((item) => (
+              <div key={item.label} className="pro-card-soft rounded-3xl p-5">
+                <div className="text-2xl font-bold text-foreground">{item.value}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{item.label}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Globe, Smartphone, Layout, Code } from "lucide-react";
+import { Code, Globe, Layout, Smartphone } from "lucide-react";
 
 const services = [
   {
@@ -34,20 +34,23 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="section-padding max-w-7xl mx-auto">
+    <section id="services" className="section-padding">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
+        className="section-shell"
       >
-        <p className="text-sm font-mono text-primary tracking-widest uppercase mb-3">What I Offer</p>
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-12">
-          My <span className="text-gradient">Services</span>
-        </h2>
+        <div className="section-header">
+          <p className="eyebrow">Services</p>
+          <h2 className="section-title">
+            End-to-end delivery for brands that need a <span className="text-gradient">stronger digital presence</span>.
+          </h2>
+        </div>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="section-shell grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service, i) => (
           <motion.div
             key={service.title}
@@ -56,21 +59,21 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
             whileHover={{ y: -10, transition: { duration: 0.2 } }}
-            className="glass-card rounded-xl p-6 group gradient-border"
+            className="pro-card group rounded-[1.75rem] p-6"
           >
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors group-hover:glow-primary">
-              <service.icon className="w-6 h-6 text-primary" />
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/18">
+              <service.icon className="h-6 w-6 text-primary" />
             </div>
 
-            <h3 className="text-base font-bold mb-2">{service.title}</h3>
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
+            <h3 className="mb-2 text-base font-bold">{service.title}</h3>
+            <p className="mb-5 text-sm leading-6 text-muted-foreground">{service.description}</p>
 
-            <p className="text-lg font-bold text-primary mb-4">{service.price}</p>
+            <p className="mb-4 text-lg font-bold text-primary">{service.price}</p>
 
             <ul className="space-y-2">
               {service.features.map((f) => (
-                <li key={f} className="text-xs text-muted-foreground flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-primary" />
+                <li key={f} className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                   {f}
                 </li>
               ))}
