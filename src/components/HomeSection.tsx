@@ -4,7 +4,7 @@ import Scene3D from "./Scene3D";
 
 const HomeSection = () => {
   return (
-    <section id="home" className="relative overflow-hidden px-4 pt-24 pb-14 sm:px-6 sm:pt-28 sm:pb-16 lg:px-12">
+    <section id="home" className="relative overflow-hidden px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-14 lg:px-12 lg:pt-28 lg:pb-16">
       <div className="absolute inset-0">
         <Scene3D />
       </div>
@@ -15,7 +15,7 @@ const HomeSection = () => {
       <div className="mesh-bg absolute inset-0 opacity-30" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      <div className="section-shell relative min-h-[calc(100vh-6rem)] items-center py-8 sm:min-h-[calc(100vh-7rem)] sm:py-10">
+      <div className="section-shell relative min-h-[72svh] items-center py-6 sm:min-h-[78svh] sm:py-8 lg:min-h-[calc(100vh-7rem)] lg:py-10">
         <div className="relative z-10 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
