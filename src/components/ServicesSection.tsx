@@ -18,10 +18,10 @@ const services = [
   },
   {
     icon: Smartphone,
-    title: "Mobile Development",
-    description: "Cross-platform mobile applications with Flutter for iOS and Android.",
+    title: "App Development",
+    description: "Ongoing cross-platform app development with Flutter for Android and iOS experiences.",
     price: "From $800",
-    features: ["Flutter / Dart", "iOS & Android", "Push Notifications", "App Store Deploy"],
+    features: ["Flutter / Dart", "Ongoing Product Build", "iOS & Android", "Scalable UI Flows"],
   },
   {
     icon: Code,
@@ -47,6 +47,9 @@ const ServicesSection = () => {
           <h2 className="section-title">
             End-to-end delivery for brands that need a <span className="text-gradient">stronger digital presence</span>.
           </h2>
+          <p className="section-copy">
+            I currently work across websites, WordPress platforms, UI systems, and ongoing app development with a clean, modern execution style.
+          </p>
         </div>
       </motion.div>
 
@@ -59,7 +62,7 @@ const ServicesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
             whileHover={{ y: -10, transition: { duration: 0.2 } }}
-            className="pro-card group rounded-[1.75rem] p-6"
+            className="pro-card group rounded-[1.75rem] p-5 sm:p-6"
           >
             <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/18">
               <service.icon className="h-6 w-6 text-primary" />

@@ -20,7 +20,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Mobile",
+    title: "App Development",
     skills: [
       { name: "Flutter", level: 85 },
       { name: "Dart", level: 83 },
@@ -53,6 +53,9 @@ const SkillsSection = () => {
           <h2 className="section-title">
             Technical depth across <span className="text-gradient">front-end, back-end, and product tooling</span>.
           </h2>
+          <p className="section-copy">
+            My current work includes responsive web interfaces, WordPress builds, and ongoing app development for modern product experiences.
+          </p>
         </div>
       </motion.div>
 
@@ -64,7 +67,7 @@ const SkillsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: ci * 0.1 }}
-            className="pro-card rounded-[1.75rem] p-6"
+            className="pro-card rounded-[1.75rem] p-5 sm:p-6"
           >
             <h3 className="mb-5 text-sm font-mono uppercase tracking-wider text-primary">{cat.title}</h3>
             <div className="space-y-4">

@@ -70,17 +70,20 @@ const ContactSection = () => {
           <h2 className="section-title">
             Ready to launch something that feels <span className="text-gradient">more polished and professional</span>?
           </h2>
+          <p className="section-copy">
+            Whether you need a website refresh, a WordPress solution, or help shaping an app project, I can help turn the idea into a stronger digital product.
+          </p>
         </div>
       </motion.div>
 
-      <div className="section-shell grid gap-12 md:grid-cols-[1.1fr_0.9fr]">
+      <div className="section-shell grid gap-8 md:gap-12 md:grid-cols-[1.1fr_0.9fr]">
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="pro-card space-y-5 rounded-[2rem] p-7"
+          className="pro-card space-y-5 rounded-[2rem] p-5 sm:p-7"
         >
           <div>
             <label className="mb-1.5 block text-sm font-medium">Name</label>
@@ -126,7 +129,7 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col justify-center gap-6"
+          className="flex flex-col justify-center gap-5 sm:gap-6"
         >
           <div className="pro-card rounded-[1.75rem] p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Direct Contact</p>

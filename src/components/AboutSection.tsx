@@ -4,7 +4,7 @@ import { ArrowUpRight, Code2, Globe, Palette, Smartphone } from "lucide-react";
 const highlights = [
   { icon: Code2, label: "Web Development", desc: "React, Next.js, TypeScript" },
   { icon: Palette, label: "UI/UX Design", desc: "Figma, conversion-focused interfaces" },
-  { icon: Smartphone, label: "Mobile Apps", desc: "Flutter and cross-platform delivery" },
+  { icon: Smartphone, label: "App Development", desc: "Ongoing Flutter builds and cross-platform delivery" },
   { icon: Globe, label: "WordPress", desc: "Custom themes, CMS builds, and support" },
 ];
 
@@ -25,29 +25,29 @@ const AboutSection = () => {
           </h2>
           <p className="section-copy">
             I&apos;m a Bangladesh-based developer and designer focused on building websites
-            and apps that feel premium from the first interaction. My work blends sharp
-            front-end execution, solid engineering, and clear visual hierarchy.
+            and apps that feel premium from the first interaction. My work blends strong
+            front-end execution, ongoing app development, solid engineering, and clear visual hierarchy.
           </p>
-          <div className="pro-card mt-8 rounded-[2rem] p-7">
+          <div className="pro-card mt-8 rounded-[2rem] p-6 sm:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
                   Approach
                 </p>
-                <h3 className="mt-3 text-2xl font-bold">
-                  Design systems, performance, and product thinking in one workflow.
+                <h3 className="mt-3 text-xl font-bold sm:text-2xl">
+                  Design systems, websites, and app experiences in one workflow.
                 </h3>
               </div>
               <ArrowUpRight className="mt-1 text-primary" />
             </div>
             <p className="mt-4 text-base leading-7 text-muted-foreground">
-              From landing pages to dashboards, I focus on clarity, motion, and
-              maintainable code so the final result feels professional instead of generic.
+              From landing pages to dashboards and active app projects, I focus on clarity,
+              motion, and maintainable code so the final result feels professional instead of generic.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 self-center justify-self-center sm:grid-cols-2">
+        <div className="grid w-full max-w-[34rem] grid-cols-1 gap-4 self-center justify-self-center sm:grid-cols-2">
           {highlights.map((item, i) => (
             <motion.div
               key={item.label}
@@ -56,7 +56,7 @@ const AboutSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
               whileHover={{ y: -6 }}
-              className="pro-card group flex min-h-[190px] flex-col rounded-[1.75rem] p-6 cursor-default"
+              className="pro-card group flex min-h-[190px] flex-col rounded-[1.75rem] p-5 sm:p-6 cursor-default"
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/16">
                 <item.icon className="h-5 w-5 text-primary" />
