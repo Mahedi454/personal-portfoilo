@@ -12,9 +12,9 @@ export const projects: ProjectItem[] = [
   {
     title: "TechDSF",
     description:
-      "A modern company website focused on AI, technology services, and a confident brand presence with a clean landing experience.",
+      "A company website built to present AI and technology services with a clear structure and modern layout.",
     tools: ["WordPress", "Elementor", "Custom CSS", "Responsive UI"],
-    impact: "Corporate website for technology-focused service positioning",
+    impact: "Company website for a technology-focused brand",
     image: "/assets/images/projects/TechDSF.jpg",
     link: "https://www.techdsf.com",
     type: "wordpress",
@@ -22,9 +22,9 @@ export const projects: ProjectItem[] = [
   {
     title: "ABSShakeel",
     description:
-      "A WordPress business website designed to present digital services, establish trust, and guide visitors toward direct contact.",
+      "A WordPress business website designed to present services clearly and support direct client contact.",
     tools: ["WordPress", "Elementor", "Custom UI", "Brand Layout"],
-    impact: "Service-focused web presence for lead generation and credibility",
+    impact: "Business website focused on trust and lead generation",
     image: "/assets/images/projects/ABSShakeel.jpg",
     link: "https://www.absshakeel.com",
     type: "wordpress",
@@ -32,9 +32,9 @@ export const projects: ProjectItem[] = [
   {
     title: "GiftNest",
     description:
-      "An elegant gifting platform concept with a warm storefront experience, curated product sections, and conversion-friendly shopping flows.",
+      "A gift marketplace concept with a structured storefront, curated sections, and a clean shopping flow.",
     tools: ["HTML", "CSS", "JavaScript", "PHP", "Laravel"],
-    impact: "Full-stack gift marketplace experience with polished storefront UI",
+    impact: "Full-stack marketplace concept with a complete storefront UI",
     image: "/assets/images/projects/GiftNest.jpg",
     link: "https://giftnest.onrender.com",
     type: "website",
@@ -42,9 +42,9 @@ export const projects: ProjectItem[] = [
   {
     title: "Library Management System",
     description:
-      "A Figma UI concept for a library system focused on smarter discovery, borrowing flows, and a friendly student-centered interface.",
+      "A Figma concept for a library system focused on book discovery, borrowing flow, and admin usability.",
     tools: ["Figma", "UI Design", "UX Flow", "Dashboard Design"],
-    impact: "Designed for book discovery, reserve flow, and admin usability",
+    impact: "UI concept built around clear student and admin flows",
     image: "/assets/images/projects/Library Management UI.jpg",
     link: "https://www.figma.com/proto/yMnWygQP0b9UOT2jBwJ1Gl/Library-Management-System?node-id=1073-259&starting-point-node-id=1073%3A259",
     type: "figma",
@@ -52,9 +52,9 @@ export const projects: ProjectItem[] = [
   {
     title: "Arsafa UI",
     description:
-      "A Figma dashboard interface for inventory, sales, and quick-access business operations with a structured admin-first layout.",
+      "A Figma dashboard interface for inventory, sales, and daily business operations.",
     tools: ["Figma", "Dashboard UI", "Admin UX", "Component Design"],
-    impact: "Operations dashboard concept for small business workflow clarity",
+    impact: "Dashboard concept for clearer small business operations",
     image: "/assets/images/projects/Arsafa Solution UI.jpg",
     link: "https://www.figma.com/proto/OlO5dd6NhSh8CAXWlvsKTR/UI-UX-Design-Project?node-id=146-65&starting-point-node-id=146%3A65",
     type: "figma",

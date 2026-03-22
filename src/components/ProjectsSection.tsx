@@ -23,10 +23,10 @@ const ProjectsSection = ({ showAll = false }: ProjectsSectionProps) => {
           <div className="section-header mb-0">
             <p className="eyebrow">Selected Work</p>
             <h2 className="section-title">
-              Featured <span className="text-gradient">projects</span> from web, WordPress, and Figma work.
+              Selected <span className="text-gradient">projects</span> across web, WordPress, and UI design.
             </h2>
             <p className="section-copy">
-              Real projects that reflect my work across company websites, product UI, and custom platform experiences.
+              A focused selection of client work and interface design.
             </p>
           </div>
 
@@ -57,6 +57,8 @@ const ProjectsSection = ({ showAll = false }: ProjectsSectionProps) => {
               <img
                 src={project.image}
                 alt={project.title}
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />

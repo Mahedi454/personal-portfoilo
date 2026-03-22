@@ -3,9 +3,9 @@ import { ArrowUpRight, Code2, Globe, Palette, Smartphone } from "lucide-react";
 
 const highlights = [
   { icon: Code2, label: "Web Development", desc: "React, Next.js, TypeScript" },
-  { icon: Palette, label: "UI/UX Design", desc: "Figma, conversion-focused interfaces" },
-  { icon: Smartphone, label: "App Development", desc: "Ongoing Flutter builds and cross-platform delivery" },
-  { icon: Globe, label: "WordPress", desc: "Custom themes, CMS builds, and support" },
+  { icon: Palette, label: "UI/UX Design", desc: "Figma, interface systems, user flows" },
+  { icon: Smartphone, label: "App Development", desc: "Flutter-based product work and mobile UI" },
+  { icon: Globe, label: "WordPress", desc: "Custom builds, CMS setup, ongoing support" },
 ];
 
 const AboutSection = () => {
@@ -21,12 +21,11 @@ const AboutSection = () => {
         <div className="max-w-2xl">
           <div className="eyebrow">About Me</div>
           <h2 className="section-title">
-            I turn product ideas into <span className="text-gradient">credible, modern experiences</span>.
+            I build <span className="text-gradient">clean, functional digital products</span>.
           </h2>
           <p className="section-copy">
-            I&apos;m a Bangladesh-based developer and designer focused on building websites
-            and apps that feel premium from the first interaction. My work blends strong
-            front-end execution, ongoing app development, solid engineering, and clear visual hierarchy.
+            I&apos;m a Bangladesh-based developer focused on websites, WordPress, UI/UX,
+            and app interfaces. My work is shaped by structure, consistency, and practical execution.
           </p>
           <div className="pro-card mt-8 rounded-[2rem] p-6 sm:p-7">
             <div className="flex items-start justify-between gap-4">
@@ -35,14 +34,14 @@ const AboutSection = () => {
                   Approach
                 </p>
                 <h3 className="mt-3 text-xl font-bold sm:text-2xl">
-                  Design systems, websites, and app experiences in one workflow.
+                  Design and development in one workflow.
                 </h3>
               </div>
               <ArrowUpRight className="mt-1 text-primary" />
             </div>
             <p className="mt-4 text-base leading-7 text-muted-foreground">
-              From landing pages to dashboards and active app projects, I focus on clarity,
-              motion, and maintainable code so the final result feels professional instead of generic.
+              From landing pages to dashboards, I focus on clear layouts, solid front-end execution,
+              and maintainable code that supports long-term use.
             </p>
           </div>
         </div>

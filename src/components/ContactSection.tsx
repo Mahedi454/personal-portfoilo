@@ -68,10 +68,10 @@ const ContactSection = () => {
         <div className="section-header">
           <p className="eyebrow">Contact</p>
           <h2 className="section-title">
-            Ready to launch something that feels <span className="text-gradient">more polished and professional</span>?
+            Let&apos;s build something <span className="text-gradient">clear, useful, and well made</span>.
           </h2>
           <p className="section-copy">
-            Whether you need a website refresh, a WordPress solution, or help shaping an app project, I can help turn the idea into a stronger digital product.
+            If you need a website, WordPress project, UI design, or app interface, I&apos;d be glad to discuss the scope.
           </p>
         </div>
       </motion.div>
@@ -134,8 +134,7 @@ const ContactSection = () => {
           <div className="pro-card rounded-[1.75rem] p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Direct Contact</p>
             <p className="mt-3 max-w-md text-base leading-7 text-muted-foreground">
-              If you need a portfolio, landing page, dashboard, or full product UI that
-              looks trustworthy and modern, we can map the scope quickly.
+              Available for portfolio websites, company sites, dashboards, WordPress builds, and product UI work.
             </p>
           </div>
 

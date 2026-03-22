@@ -4,7 +4,7 @@ import Scene3D from "./Scene3D";
 
 const HomeSection = () => {
   return (
-    <section id="home" className="relative overflow-hidden px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-14 lg:px-12 lg:pt-28 lg:pb-16">
+    <section id="home" className="relative overflow-hidden px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-14 md:pt-28 lg:px-12 lg:pt-28 lg:pb-16">
       <div className="absolute inset-0">
         <Scene3D />
       </div>
@@ -16,7 +16,7 @@ const HomeSection = () => {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="section-shell relative min-h-[72svh] items-center py-6 sm:min-h-[78svh] sm:py-8 lg:min-h-[calc(100vh-7rem)] lg:py-10">
-        <div className="relative z-10 max-w-3xl">
+        <div className="relative z-10 max-w-3xl md:max-w-[42rem]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,16 +24,16 @@ const HomeSection = () => {
             className="eyebrow"
           >
             <Sparkles size={14} />
-            Full-Stack Developer and UI Designer
+            Full-Stack Web, WordPress, UI/UX & App Developer
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.7 }}
-            className="max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-7xl"
+            className="max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl md:text-[3.35rem] lg:text-7xl"
           >
-            Building premium digital products with a clean visual edge.
+            Building modern websites and digital products with clarity.
           </motion.h1>
 
           <motion.p
@@ -42,9 +42,8 @@ const HomeSection = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8 lg:text-xl"
           >
-            I design and develop high-performing websites, active app experiences,
-            and product interfaces that help brands look credible, feel modern,
-            and convert with confidence.
+            I design and build websites, WordPress solutions, UI systems, and app
+            interfaces focused on usability, performance, and a clean visual standard.
           </motion.p>
 
           <motion.div
@@ -79,7 +78,7 @@ const HomeSection = () => {
             {[
               { value: "4+", label: "Years building products" },
               { value: "20+", label: "Projects delivered" },
-              { value: "Ongoing", label: "App development in progress" },
+              { value: "Active", label: "App projects in development" },
             ].map((item) => (
               <div key={item.label} className="pro-card-soft rounded-3xl p-4 sm:p-5">
                 <div className="text-2xl font-bold text-foreground">{item.value}</div>

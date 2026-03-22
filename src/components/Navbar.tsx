@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useLocation } from "react-router-dom";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -16,8 +17,10 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  const location = useLocation();
 
   const isDark = resolvedTheme !== "light";
+  const sectionHref = (hash: string) => (location.pathname === "/" ? hash : `/${hash}`);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -35,7 +38,7 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#home" className="flex items-center gap-3">
+        <a href={sectionHref("#home")} className="flex items-center gap-3">
           <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-background/70 shadow-[0_10px_30px_hsl(var(--primary)/0.14)]">
             <img
               src="/Portfolio%20Logo.jpeg"
@@ -48,16 +51,16 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="hidden items-center gap-5 lg:flex xl:gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={sectionHref(link.href)}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              ))}
           <button
             type="button"
             onClick={() => setTheme(isDark ? "light" : "dark")}
@@ -66,12 +69,12 @@ const Navbar = () => {
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a href="#contact" className="button-primary">
+          <a href={sectionHref("#contact")} className="button-primary">
             Start a Project
           </a>
         </div>
 
-        <button className="text-foreground md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button className="text-foreground lg:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -82,13 +85,13 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="pro-card mx-4 rounded-3xl border md:hidden"
+            className="pro-card mx-4 rounded-3xl border lg:hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-5">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={sectionHref(link.href)}
                   onClick={() => setMobileOpen(false)}
                   className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                 >

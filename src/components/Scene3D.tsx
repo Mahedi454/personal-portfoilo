@@ -1,77 +1,99 @@
 import { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, MeshTransmissionMaterial, OrbitControls } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import { useTheme } from "next-themes";
 import * as THREE from "three";
 
-const FloatingGeometry = ({
+const HaloRing = ({
   position,
+  rotation,
   color,
-  speed = 1,
-  size = 1,
-  wireColor,
+  speed,
+  scale,
 }: {
   position: [number, number, number];
+  rotation: [number, number, number];
   color: string;
-  speed?: number;
-  size?: number;
-  wireColor: string;
+  speed: number;
+  scale: number;
 }) => {
-  const groupRef = useRef<THREE.Group>(null);
+  const ref = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.x = state.clock.elapsedTime * 0.12 * speed;
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.16 * speed;
+    if (!ref.current) {
+      return;
     }
+
+    ref.current.rotation.z = rotation[2] + state.clock.elapsedTime * speed;
   });
 
   return (
-    <Float speed={speed * 1.6} rotationIntensity={0.25} floatIntensity={0.7}>
-      <group ref={groupRef} position={position} scale={size}>
-        <mesh>
-          <octahedronGeometry args={[1.1, 0]} />
-          <MeshTransmissionMaterial
-            backside
-            color={color}
-            thickness={0.8}
-            roughness={0.1}
-            chromaticAberration={0.05}
-            anisotropy={0.2}
-            distortion={0.12}
-            distortionScale={0.24}
-            temporalDistortion={0.12}
-            transmission={0.92}
-          />
-        </mesh>
-        <lineSegments>
-          <edgesGeometry args={[new THREE.OctahedronGeometry(1.18, 0)]} />
-          <lineBasicMaterial color={wireColor} transparent opacity={0.45} />
-        </lineSegments>
-      </group>
+    <Float speed={1.1} rotationIntensity={0.08} floatIntensity={0.35}>
+      <mesh ref={ref} position={position} rotation={rotation} scale={scale}>
+        <torusGeometry args={[1.9, 0.055, 24, 160]} />
+        <meshBasicMaterial color={color} transparent opacity={0.42} />
+      </mesh>
     </Float>
   );
 };
 
-const ParticleField = () => {
+const CoreShape = ({ isLight }: { isLight: boolean }) => {
+  const ref = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!ref.current) {
+      return;
+    }
+
+    ref.current.rotation.y = state.clock.elapsedTime * 0.18;
+    ref.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.35) * 0.18;
+  });
+
+  return (
+    <Float speed={1.2} rotationIntensity={0.12} floatIntensity={0.45}>
+      <mesh ref={ref} position={[0.7, 0.25, -0.2]}>
+        <icosahedronGeometry args={[1.2, 0]} />
+        <meshStandardMaterial
+          color={isLight ? "#f8fafc" : "#c7f0ff"}
+          emissive={isLight ? "#60a5fa" : "#38bdf8"}
+          emissiveIntensity={isLight ? 0.15 : 0.24}
+          metalness={0.2}
+          roughness={0.32}
+          transparent
+          opacity={0.9}
+        />
+      </mesh>
+    </Float>
+  );
+};
+
+const AccentDots = ({ color }: { color: string }) => {
   const points = useRef<THREE.Points>(null);
-  const particleCount = 320;
+  const pointCount = 72;
 
   const positions = useMemo(() => {
-    const pos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 16;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+    const values = new Float32Array(pointCount * 3);
+
+    for (let i = 0; i < pointCount; i++) {
+      const radius = 2.4 + Math.random() * 3.8;
+      const angle = (i / pointCount) * Math.PI * 2;
+      const height = (Math.random() - 0.5) * 4.5;
+
+      values[i * 3] = Math.cos(angle) * radius;
+      values[i * 3 + 1] = height;
+      values[i * 3 + 2] = Math.sin(angle) * radius * 0.5 - 1.2;
     }
-    return pos;
+
+    return values;
   }, []);
 
   useFrame((state) => {
-    if (points.current) {
-      points.current.rotation.y = state.clock.elapsedTime * 0.015;
-      points.current.position.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.15;
+    if (!points.current) {
+      return;
     }
+
+    points.current.rotation.y = state.clock.elapsedTime * 0.045;
+    points.current.position.y = Math.sin(state.clock.elapsedTime * 0.25) * 0.08;
   });
 
   return (
@@ -79,30 +101,15 @@ const ParticleField = () => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={particleCount}
+          count={pointCount}
           array={positions}
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.035} color="#7dd3fc" transparent opacity={0.75} sizeAttenuation />
+      <pointsMaterial color={color} size={0.045} transparent opacity={0.5} sizeAttenuation />
     </points>
   );
 };
-
-const LightRig = ({ isLight }: { isLight: boolean }) => (
-  <>
-    <color attach="background" args={[isLight ? "#f7f4ee" : "#07111f"]} />
-    <fog attach="fog" args={[isLight ? "#f7f4ee" : "#07111f", 8, 18]} />
-    <ambientLight intensity={isLight ? 1.15 : 0.55} />
-    <hemisphereLight
-      skyColor={isLight ? "#ffffff" : "#60a5fa"}
-      groundColor={isLight ? "#cbd5e1" : "#020617"}
-      intensity={isLight ? 1.4 : 0.9}
-    />
-    <directionalLight position={[4, 6, 5]} intensity={isLight ? 1.6 : 1.1} color={isLight ? "#ffffff" : "#67e8f9"} />
-    <pointLight position={[-5, -2, 4]} intensity={isLight ? 1.1 : 0.8} color={isLight ? "#f97316" : "#fb923c"} />
-  </>
-);
 
 const Scene3D = () => {
   const { resolvedTheme } = useTheme();
@@ -110,36 +117,42 @@ const Scene3D = () => {
 
   return (
     <Canvas
-      camera={{ position: [0, 0.4, 7], fov: 42 }}
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
-      gl={{ alpha: true, antialias: true }}
-      dpr={[1, 1.5]}
+      camera={{ position: [0, 0, 8], fov: 34 }}
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+      dpr={[1, 1.25]}
+      gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
     >
-      <LightRig isLight={isLight} />
-      <Environment preset={isLight ? "city" : "night"} />
-      <FloatingGeometry
-        position={[-2.8, 1.4, -0.8]}
-        color={isLight ? "#dbeafe" : "#67e8f9"}
-        wireColor={isLight ? "#2563eb" : "#93c5fd"}
-        speed={0.8}
-        size={1.35}
+      <ambientLight intensity={isLight ? 1.1 : 0.65} />
+      <directionalLight
+        position={[3, 4, 5]}
+        intensity={isLight ? 1.2 : 0.9}
+        color={isLight ? "#ffffff" : "#7dd3fc"}
       />
-      <FloatingGeometry
-        position={[2.5, -0.8, -1.6]}
-        color={isLight ? "#ffedd5" : "#fdba74"}
-        wireColor={isLight ? "#ea580c" : "#fb923c"}
-        speed={0.65}
-        size={0.95}
+      <pointLight
+        position={[-4, -2, 3]}
+        intensity={isLight ? 0.8 : 0.55}
+        color={isLight ? "#fb923c" : "#38bdf8"}
       />
-      <FloatingGeometry
-        position={[0.2, 2, -2.8]}
-        color={isLight ? "#ffffff" : "#dbeafe"}
-        wireColor={isLight ? "#64748b" : "#38bdf8"}
-        speed={0.55}
-        size={0.62}
-      />
-      <ParticleField />
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={isLight ? 0.45 : 0.35} />
+
+      <group position={[1.2, 0.2, 0]}>
+        <HaloRing
+          position={[0, 0, 0]}
+          rotation={[1.05, 0.2, 0.15]}
+          color={isLight ? "#2563eb" : "#67e8f9"}
+          speed={0.16}
+          scale={1}
+        />
+        <HaloRing
+          position={[-0.3, -0.15, -0.8]}
+          rotation={[0.55, -0.35, -0.22]}
+          color={isLight ? "#f97316" : "#fb923c"}
+          speed={-0.12}
+          scale={0.82}
+        />
+        <CoreShape isLight={isLight} />
+      </group>
+
+      <AccentDots color={isLight ? "#2563eb" : "#7dd3fc"} />
     </Canvas>
   );
 };

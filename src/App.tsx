@@ -4,6 +4,8 @@ import { ThemeProvider } from "next-themes";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Seo from "@/components/Seo";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Index from "./pages/Index.tsx";
 import Projects from "./pages/Projects.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -18,9 +20,11 @@ const App = () => (
       value={{ light: "light", dark: "dark" }}
     >
       <TooltipProvider>
+        <SmoothScrollProvider />
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <Seo />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/projects" element={<Projects />} />

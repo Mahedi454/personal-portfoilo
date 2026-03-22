@@ -51,10 +51,10 @@ const SkillsSection = () => {
         <div className="section-header">
           <p className="eyebrow">Capabilities</p>
           <h2 className="section-title">
-            Technical depth across <span className="text-gradient">front-end, back-end, and product tooling</span>.
+            Practical skills across <span className="text-gradient">front-end, back-end, and product tools</span>.
           </h2>
           <p className="section-copy">
-            My current work includes responsive web interfaces, WordPress builds, and ongoing app development for modern product experiences.
+            My work covers responsive interfaces, WordPress development, APIs, and app-focused product work.
           </p>
         </div>
       </motion.div>

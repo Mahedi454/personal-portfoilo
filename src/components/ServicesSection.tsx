@@ -5,28 +5,28 @@ const services = [
   {
     icon: Globe,
     title: "Web Development",
-    description: "Custom web applications built with modern frameworks. From SPAs to full-stack solutions.",
+    description: "Custom websites and web applications built with a modern, responsive front end.",
     price: "From $500",
     features: ["React / Next.js", "Responsive Design", "API Integration", "Performance Optimized"],
   },
   {
     icon: Layout,
     title: "WordPress Solutions",
-    description: "Custom themes, plugins, and complete WordPress websites tailored to your brand.",
+    description: "Professional WordPress websites tailored to your content, brand, and business goals.",
     price: "From $300",
     features: ["Custom Themes", "Plugin Development", "WooCommerce", "SEO Optimized"],
   },
   {
     icon: Smartphone,
     title: "App Development",
-    description: "Ongoing cross-platform app development with Flutter for Android and iOS experiences.",
+    description: "Cross-platform app interfaces and product builds with a clean, practical approach.",
     price: "From $800",
     features: ["Flutter / Dart", "Ongoing Product Build", "iOS & Android", "Scalable UI Flows"],
   },
   {
     icon: Code,
     title: "UI/UX Design",
-    description: "User-centered design with wireframes, prototypes, and pixel-perfect interfaces.",
+    description: "Interface design focused on structure, clarity, and consistent visual direction.",
     price: "From $250",
     features: ["Figma Design", "Wireframing", "Prototyping", "Design Systems"],
   },
@@ -45,10 +45,10 @@ const ServicesSection = () => {
         <div className="section-header">
           <p className="eyebrow">Services</p>
           <h2 className="section-title">
-            End-to-end delivery for brands that need a <span className="text-gradient">stronger digital presence</span>.
+            Services built for a <span className="text-gradient">clear and professional digital presence</span>.
           </h2>
           <p className="section-copy">
-            I currently work across websites, WordPress platforms, UI systems, and ongoing app development with a clean, modern execution style.
+            I work across websites, WordPress, UI/UX, and app development with a focus on clean execution and dependable results.
           </p>
         </div>
       </motion.div>
