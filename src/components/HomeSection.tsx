@@ -60,8 +60,8 @@ const HomeSection = () => {
               View Case Studies
             </a>
             <a
-              href="/Mahedi%20Hasan%20CV.pdf"
-              download="Mahedi-Hasan-CV.pdf"
+              href="/Mahedihasan%20CV.pdf"
+              download="Mahedihasan-CV.pdf"
               className="button-secondary"
             >
               <Download size={16} />

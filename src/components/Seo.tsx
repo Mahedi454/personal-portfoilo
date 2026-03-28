@@ -30,7 +30,7 @@ const routeMeta: Record<string, RouteMeta> = {
       name: "Mahedi Hasan",
       jobTitle: "Full-Stack Web, WordPress, UI/UX & App Developer",
       description: DEFAULT_DESCRIPTION,
-      email: "mailto:mahedihasan.codes@gmail.com",
+      email: "mailto:info@mahedihasan.tech",
       telephone: "+8801768857058",
       image: DEFAULT_IMAGE,
       sameAs: [

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Github, Instagram, Linkedin, Mail, MessageCircle, Send } from "lucide-react";
 
 const CONTACT = {
-  email: "mahedihasan.codes@gmail.com",
+  email: "info@mahedihasan.tech",
   whatsappDisplay: "+880 1768-857058",
   whatsappLink: "https://wa.me/8801768857058",
   linkedin: "https://www.linkedin.com/in/mahedihasan916/",
