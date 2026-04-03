@@ -20,6 +20,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const isDark = resolvedTheme !== "light";
+  const logoSrc = isDark ? "/dark.png" : "/light.png";
   const sectionHref = (hash: string) => (location.pathname === "/" ? hash : `/${hash}`);
 
   useEffect(() => {
@@ -39,11 +40,11 @@ const Navbar = () => {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href={sectionHref("#home")} className="flex items-center gap-3">
-          <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-border/70 bg-background/70 shadow-[0_10px_30px_hsl(var(--primary)/0.14)]">
+          <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-border/70 bg-background/70 p-1 shadow-[0_10px_30px_hsl(var(--primary)/0.14)]">
             <img
-              src="/Portfolio%20Logo.jpeg"
+              src={logoSrc}
               alt="Mahedi Hasan logo"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
           </span>
           <span className="hidden font-display text-base font-bold text-foreground sm:block">

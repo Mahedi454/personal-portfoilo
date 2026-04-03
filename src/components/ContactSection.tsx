@@ -68,10 +68,10 @@ const ContactSection = () => {
         <div className="section-header">
           <p className="eyebrow">Contact</p>
           <h2 className="section-title">
-            Let&apos;s build something <span className="text-gradient">clear, useful, and well made</span>.
+            If you have a project in mind, <span className="text-gradient">feel free to reach out</span>.
           </h2>
           <p className="section-copy">
-            If you need a website, WordPress project, UI design, or app interface, I&apos;d be glad to discuss the scope.
+            I&apos;m open to website work, WordPress projects, UI design, and front-end support for ongoing products.
           </p>
         </div>
       </motion.div>
@@ -134,7 +134,7 @@ const ContactSection = () => {
           <div className="pro-card rounded-[1.75rem] p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Direct Contact</p>
             <p className="mt-3 max-w-md text-base leading-7 text-muted-foreground">
-              Available for portfolio websites, company sites, dashboards, WordPress builds, and product UI work.
+              The easiest way to contact me is by email or WhatsApp. If you already know what you need, send a short message and I&apos;ll get back to you.
             </p>
           </div>
 

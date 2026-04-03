@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
 import { useLocation } from "react-router-dom";
 
 const DEFAULT_TITLE = "Mahedi Hasan | Full-Stack Web, WordPress, UI/UX & App Developer";
 const DEFAULT_DESCRIPTION =
   "Mahedi Hasan is a full-stack web, WordPress, UI/UX, and app developer creating modern websites, scalable interfaces, and polished digital products for growing brands.";
-const DEFAULT_IMAGE = "/Portfolio%20Logo.jpeg";
+const DEFAULT_IMAGE = "/dark.png";
+const DARK_FAVICON = "/dark.png";
 const SITE_NAME = "Mahedi Hasan";
 
 type RouteMeta = {
@@ -90,6 +92,7 @@ const ensureLinkTag = (selector: string, attributes: Record<string, string>) => 
 
 const Seo = () => {
   const location = useLocation();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const current = routeMeta[location.pathname] ?? {
@@ -152,6 +155,14 @@ const Seo = () => {
       2,
     );
   }, [location.pathname]);
+
+  useEffect(() => {
+    ensureLinkTag('link[rel="icon"]', {
+      rel: "icon",
+      type: "image/png",
+      href: DARK_FAVICON,
+    });
+  }, [resolvedTheme]);
 
   return null;
 };

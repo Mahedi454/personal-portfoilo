@@ -4,7 +4,7 @@ import { ArrowUpRight, Code2, Globe, Palette, Smartphone } from "lucide-react";
 const highlights = [
   { icon: Code2, label: "Web Development", desc: "React, Next.js, TypeScript" },
   { icon: Palette, label: "UI/UX Design", desc: "Figma, interface systems, user flows" },
-  { icon: Smartphone, label: "App Development", desc: "Flutter-based product work and mobile UI" },
+  { icon: Smartphone, label: "App UI Work", desc: "Mobile interface work and product layout planning" },
   { icon: Globe, label: "WordPress", desc: "Custom builds, CMS setup, ongoing support" },
 ];
 
@@ -21,11 +21,12 @@ const AboutSection = () => {
         <div className="max-w-2xl">
           <div className="eyebrow">About Me</div>
           <h2 className="section-title">
-            I build <span className="text-gradient">clean, functional digital products</span>.
+            I like building <span className="text-gradient">clean and practical digital products</span>.
           </h2>
           <p className="section-copy">
-            I&apos;m a Bangladesh-based developer focused on websites, WordPress, UI/UX,
-            and app interfaces. My work is shaped by structure, consistency, and practical execution.
+            I&apos;m based in Bangladesh and mostly work on portfolio sites, business websites,
+            WordPress builds, and interface design. I care about spacing, readability,
+            and making things feel polished without making them complicated.
           </p>
           <div className="pro-card mt-8 rounded-[2rem] p-6 sm:p-7">
             <div className="flex items-start justify-between gap-4">
@@ -34,14 +35,14 @@ const AboutSection = () => {
                   Approach
                 </p>
                 <h3 className="mt-3 text-xl font-bold sm:text-2xl">
-                  Design and development in one workflow.
+                  Design decisions and front-end work handled in one place.
                 </h3>
               </div>
               <ArrowUpRight className="mt-1 text-primary" />
             </div>
             <p className="mt-4 text-base leading-7 text-muted-foreground">
-              From landing pages to dashboards, I focus on clear layouts, solid front-end execution,
-              and maintainable code that supports long-term use.
+              I usually start with structure, then improve the visual details, and finally
+              build everything so it stays responsive and easy to update later.
             </p>
           </div>
         </div>

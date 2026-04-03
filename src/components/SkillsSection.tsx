@@ -54,7 +54,7 @@ const SkillsSection = () => {
             Practical skills across <span className="text-gradient">front-end, back-end, and product tools</span>.
           </h2>
           <p className="section-copy">
-            My work covers responsive interfaces, WordPress development, APIs, and app-focused product work.
+            These are the tools and technologies I use most often in my day-to-day project work.
           </p>
         </div>
       </motion.div>
@@ -74,8 +74,12 @@ const SkillsSection = () => {
               {cat.skills.map((skill, si) => (
                 <div key={skill.name}>
                   <div className="mb-1.5 flex justify-between text-sm">
-                    <span className="font-medium">{skill.name}</span>
-                    <span className="font-mono text-xs text-muted-foreground">{skill.level}%</span>
+                    <span className="font-medium text-foreground">
+                      {skill.name}
+                    </span>
+                    <span className="font-mono text-xs text-foreground/80">
+                      {skill.level}%
+                    </span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-secondary">
                     <motion.div
@@ -83,7 +87,7 @@ const SkillsSection = () => {
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: ci * 0.1 + si * 0.05 }}
-                      className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
+                      className="h-full rounded-full bg-[linear-gradient(90deg,#49d9ff_0%,#bfd4ca_52%,#ff8c61_100%)]"
                     />
                   </div>
                 </div>

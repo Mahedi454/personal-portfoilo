@@ -5,28 +5,28 @@ const services = [
   {
     icon: Globe,
     title: "Web Development",
-    description: "Custom websites and web applications built with a modern, responsive front end.",
+    description: "Business websites, landing pages, and web interfaces built with a clean responsive front end.",
     price: "From $500",
     features: ["React / Next.js", "Responsive Design", "API Integration", "Performance Optimized"],
   },
   {
     icon: Layout,
     title: "WordPress Solutions",
-    description: "Professional WordPress websites tailored to your content, brand, and business goals.",
+    description: "WordPress websites that are easier to manage, easier to update, and matched to your brand.",
     price: "From $300",
     features: ["Custom Themes", "Plugin Development", "WooCommerce", "SEO Optimized"],
   },
   {
     icon: Smartphone,
-    title: "App Development",
-    description: "Cross-platform app interfaces and product builds with a clean, practical approach.",
+    title: "App Design Support",
+    description: "Mobile-focused UI work and product flow planning for app-based projects.",
     price: "From $800",
-    features: ["Flutter / Dart", "Ongoing Product Build", "iOS & Android", "Scalable UI Flows"],
+    features: ["Flutter / Dart", "UI Structure", "iOS & Android", "Clear User Flow"],
   },
   {
     icon: Code,
     title: "UI/UX Design",
-    description: "Interface design focused on structure, clarity, and consistent visual direction.",
+    description: "UI design for dashboards, admin panels, and landing pages with a more practical visual system.",
     price: "From $250",
     features: ["Figma Design", "Wireframing", "Prototyping", "Design Systems"],
   },
@@ -48,7 +48,7 @@ const ServicesSection = () => {
             Services built for a <span className="text-gradient">clear and professional digital presence</span>.
           </h2>
           <p className="section-copy">
-            I work across websites, WordPress, UI/UX, and app development with a focus on clean execution and dependable results.
+            Most of my work is around websites, WordPress, UI design, and front-end development for small businesses and personal brands.
           </p>
         </div>
       </motion.div>

@@ -23,10 +23,10 @@ const ProjectsSection = ({ showAll = false }: ProjectsSectionProps) => {
           <div className="section-header mb-0">
             <p className="eyebrow">Selected Work</p>
             <h2 className="section-title">
-              Selected <span className="text-gradient">projects</span> across web, WordPress, and UI design.
+              A few <span className="text-gradient">projects</span> I&apos;ve worked on recently.
             </h2>
             <p className="section-copy">
-              A focused selection of client work and interface design.
+              These include company websites, WordPress work, and interface design projects.
             </p>
           </div>
 
