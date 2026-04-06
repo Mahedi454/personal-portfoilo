@@ -6,7 +6,7 @@ const DEFAULT_TITLE = "Mahedi Hasan | Full-Stack Web, WordPress, UI/UX & App Dev
 const DEFAULT_DESCRIPTION =
   "Mahedi Hasan is a full-stack web, WordPress, UI/UX, and app developer creating modern websites, scalable interfaces, and polished digital products for growing brands.";
 const DEFAULT_IMAGE = "/dark.png";
-const DARK_FAVICON = "/dark.png";
+const FAVICON = "/favicon.ico";
 const SITE_NAME = "Mahedi Hasan";
 
 type RouteMeta = {
@@ -159,8 +159,8 @@ const Seo = () => {
   useEffect(() => {
     ensureLinkTag('link[rel="icon"]', {
       rel: "icon",
-      type: "image/png",
-      href: DARK_FAVICON,
+      type: "image/x-icon",
+      href: FAVICON,
     });
   }, [resolvedTheme]);
 
