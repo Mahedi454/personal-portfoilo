@@ -10,6 +10,16 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+    title: "Shei IT",
+    description:
+      "A full-stack IT services website built for service discovery, portfolio presentation, pricing, blogging, and client contact.",
+    tools: ["React", "Node.js", "Express", "Zod", "PostgreSQL", "Hostinger", "Vercel"],
+    impact: "Production business website for digital services and client growth",
+    image: "/assets/images/projects/Shei IT.png",
+    link: "https://www.shei-it.com/",
+    type: "website",
+  },
+  {
     title: "TechDSF",
     description:
       "A company website built to present AI and technology services with a clear structure and modern layout.",
