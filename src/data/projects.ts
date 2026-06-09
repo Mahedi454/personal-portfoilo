@@ -30,6 +30,16 @@ export const projects: ProjectItem[] = [
     type: "wordpress",
   },
   {
+    title: "IEEE ICADHI 2026 Program",
+    description:
+      "A Figma prototype showcasing StudentPulse AI for the IEEE International Congress on AI & Digital Health Innovations.",
+    tools: ["Figma", "Prototype", "AI Health", "Digital Health"],
+    impact: "Project showcase for AI-powered student stress prediction and digital health innovation",
+    image: "/assets/images/projects/StudentPulse AI.svg",
+    link: "https://slide-click-50683646.figma.site/",
+    type: "figma",
+  },
+  {
     title: "ABSShakeel",
     description:
       "A WordPress business website designed to present services clearly and support direct client contact.",
