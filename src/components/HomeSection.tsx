@@ -59,7 +59,7 @@ const HomeSection = () => {
               View Projects
             </a>
             <a
-              href="/Mahedi%20Hasan%20CV.pdf"
+              href="/mahedi-hasan-cv.pdf"
               download="Mahedi-Hasan-CV.pdf"
               className="button-secondary"
             >
