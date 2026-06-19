@@ -30,6 +30,16 @@ export const projects: ProjectItem[] = [
     type: "wordpress",
   },
   {
+    title: "Shei-IT Finance",
+    description:
+      "A finance dashboard website built for tracking revenue, investment, expenses, salary costs, withdrawals, and current balance logic.",
+    tools: ["PHP", "Laravel", "Raw CSS"],
+    impact: "Internal finance management dashboard for Shei-IT operations",
+    image: "/assets/images/projects/Shei IT Finance.svg",
+    link: "https://www.shei-it.com/",
+    type: "website",
+  },
+  {
     title: "IEEE ICADHI 2026 Program",
     description:
       "A Figma prototype showcasing StudentPulse AI for the IEEE International Congress on AI & Digital Health Innovations.",
